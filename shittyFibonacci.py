@@ -3,7 +3,7 @@ import sys
 # setting to 0 = infinite max digits, meaning you can get even more massive numbers (default is 4900 max digits)
 sys.set_int_max_str_digits(0)
 
-def dataTrimming(word):
+def wordTrimming(word):
 	temp = word.replace(word[0], '')
 	output = temp.replace(word[len(word)-1], '')
 	return output
@@ -26,21 +26,21 @@ print("======SAIF'S SHIT FIB VALUE THING======\n")
 mode = input("single value query or multi-value query? s/m: ")
 while mode.lower() != "m" and mode.lower() != "s":
 	print("not accepted.")
-	mode = input("single value query or multi-value query? s/m: ")
+	mode = input("single-value query or multi-value query? s/m: ")
 
 match mode.lower():
 	case "m":
 		with open("fib-values-multi.txt", "w") as file:
-			LIST_RANGE = int(input("enter highest index required: "))
-			for i in range(LIST_RANGE):
-				index = i + 1
+			listRange = int(input("enter highest index required: "))
+			for i in range(listRange):
+				index = i
 				fileEntry = (index, fib_output(i))
-				file.write(dataTrimming(str(fileEntry)) + '\n')
+				file.write(wordTrimming(str(fileEntry)) + '\n')
 				print(index)
 	case "s":
 		with open("fib-values-single.txt", "w") as file:
 			query = int(input("enter query: "))
 			fileEntry = (fib_output(query))
-			file.write(dataTrimming(str(fileEntry)) + '\n')
+			file.write(wordTrimming(str(fileEntry)))
 
 print("======FILE GENERATED======")
