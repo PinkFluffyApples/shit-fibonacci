@@ -32,7 +32,7 @@ match mode.lower():
 	case "m":
 		with open("fib-values-multi.txt", "w") as file:
 			listRange = int(input("enter highest index required: "))
-			for i in range(listRange):
+			for i in range(listRange + 1):
 				index = i
 				fileEntry = (index, fib_output(i))
 				file.write(wordTrimming(str(fileEntry)) + '\n')
