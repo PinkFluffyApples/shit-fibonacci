@@ -1,4 +1,5 @@
 import sys
+import time
 
 # setting to 0 = infinite max digits, meaning you can get even more massive numbers (default is 4900 max digits)
 sys.set_int_max_str_digits(0)
@@ -22,7 +23,8 @@ def fibonacci(n):
 def fib_output(n):
 	return fibonacci(n)[0]
 
-print("======SAIF'S SHIT FIB VALUE THING======\n")
+print("========================================")
+
 mode = input("single value query or multi-value query? s/m: ")
 while mode.lower() != "m" and mode.lower() != "s":
 	print("not accepted.")
@@ -30,17 +32,20 @@ while mode.lower() != "m" and mode.lower() != "s":
 
 match mode.lower():
 	case "m":
-		with open("fib-values-multi.txt", "w") as file:
-			listRange = int(input("enter highest index required: "))
-			for i in range(listRange + 1):
-				index = i
-				fileEntry = (index, fib_output(i))
-				file.write(wordTrimming(str(fileEntry)) + '\n')
-				print(index)
+		initialTime = time.time()
+		with open("fib-values-multi.txt", "w") as f:
+			listRange = int(input("enter index limit: "))
+			for i in range(listRange):
+				val = wordTrimming(str((i + 1, fib_output(i))))
+				fileEntry = '\n' + val
+				f.write(fileEntry)
 	case "s":
+		initialTime = time.time()
 		with open("fib-values-single.txt", "w") as file:
 			query = int(input("enter query: "))
 			fileEntry = (fib_output(query))
 			file.write(wordTrimming(str(fileEntry)))
 
-print("======FILE GENERATED======")
+duration = time.time() - initialTime
+print("==============FILE GENERATED=============")
+print(f" Duration: {duration}s")
