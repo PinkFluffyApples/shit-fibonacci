@@ -4,7 +4,7 @@ import time
 # setting to 0 = infinite max digits, meaning you can get even more massive numbers (default is 4900 max digits)
 sys.set_int_max_str_digits(0)
 
-def wordTrimming(word):
+def dataTrimming(word):
 	temp = word.replace(word[0], '')
 	output = temp.replace(word[len(word)-1], '')
 	return output
@@ -36,7 +36,7 @@ match mode.lower():
 		with open("fib-values-multi.txt", "w") as f:
 			listRange = int(input("enter index limit: "))
 			for i in range(listRange):
-				val = wordTrimming(str((i + 1, fib_output(i))))
+				val = dataTrimming(str((i + 1, fib_output(i))))
 				fileEntry = '\n' + val
 				f.write(fileEntry)
 	case "s":
@@ -44,7 +44,7 @@ match mode.lower():
 		with open("fib-values-single.txt", "w") as file:
 			query = int(input("enter query: "))
 			fileEntry = (fib_output(query))
-			file.write(wordTrimming(str(fileEntry)))
+			file.write(dataTrimming(str(fileEntry)))
 
 duration = time.time() - initialTime
 print("==============FILE GENERATED=============")
